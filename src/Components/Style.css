@@ -176,7 +176,7 @@ i {
 }
 .my-favorites {
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   background-color: #752214;
   padding: 20px 5px;
@@ -184,11 +184,26 @@ i {
   justify-content: space-around;
   align-items: center;
 }
-.favorite-title {
+.favorite-item {
   padding: 5px;
   font-size: 1rem;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  gap: 5px;
+  margin: 5px;
+}
+.favorite {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.no-favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-bottom: 5px;
 }

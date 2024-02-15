@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Card from "./Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import FavoritesPage from "./FavoritesPage";
+import Favorites from "./Favorites";
 
 let API_key = "&api_key=9e0dce1c0ed2a93b24f5831757734c2a";
 let base_url = "https://api.themoviedb.org/3";
@@ -23,6 +23,20 @@ const Main = () => {
   const addToFavorites = (movie) => {
     setFavorites((prevFavorites) => {
       const newFavorites = [...prevFavorites, movie];
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      return newFavorites;
+    });
+  };
+
+  const handleDeleteFromFavorites = (updatedFavorites) => {
+    setFavorites(updatedFavorites);
+  };
+
+  const removeFromFavorites = (movieToRemove) => {
+    setFavorites((prevFavorites) => {
+      const newFavorites = prevFavorites.filter(
+        (movie) => movie.id !== movieToRemove.id
+      );
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
       return newFavorites;
     });
@@ -129,15 +143,15 @@ const Main = () => {
                 info={res}
                 key={pos}
                 onAddToFavorites={() => addToFavorites(res)}
+                onRemoveFromFavorites={() => removeFromFavorites(res)}
               />
             );
           })
         )}
       </div>
-      <div>
-        <h2 className="my-favourites">
-          <FavoritesPage />
-        </h2>
+      <div className="favorites-page">
+        <h2 className="my-favorites">My Favorites </h2>
+        <Favorites favorites={favorites} onDelete={handleDeleteFromFavorites} />
       </div>
     </>
   );
