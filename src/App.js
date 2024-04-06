@@ -2,7 +2,7 @@ import React from "react";
 import Main from "./Components/Main";
 import "./App.css";
 import "./Components/Style.css";
-import FavoritesPage from "./Components/FavoritesPage";
+import Favorites from "./Components/Favorites";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </BrowserRouter>
   );

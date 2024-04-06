@@ -5,6 +5,8 @@ import Card from "./Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Favorites from "./Favorites";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 let API_key = "&api_key=9e0dce1c0ed2a93b24f5831757734c2a";
 let base_url = "https://api.themoviedb.org/3";
@@ -15,7 +17,7 @@ const Main = () => {
   const [movieData, setData] = useState([]);
   const [url_set, setUrl] = useState(url);
   const [search, setSearch] = useState("");
-
+  const navigate = useNavigate();
   const [favorites, setFavorites] = useState(
     JSON.parse(localStorage.getItem("favorites")) || []
   );
@@ -44,10 +46,19 @@ const Main = () => {
 
   useEffect(() => {
     fetch(url_set)
-      .then((res) => res.json())
+      .then((res) => {
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      return res.json();
+    })
       .then((data) => {
         setData(data.results);
-      });
+      })
+       .catch((error) => {
+      console.error("Error fetching movie data:", error);
+      // You can handle the error here, e.g., display an error message to the user
+    });
   }, [url_set]);
 
   const getData = (movieType) => {
@@ -80,6 +91,7 @@ const Main = () => {
     }
     setUrl(url);
   };
+
   const searchMovie = (evt) => {
     if (evt.key == "Enter") {
       url =
@@ -89,6 +101,10 @@ const Main = () => {
       setUrl(url);
       setSearch(" ");
     }
+  };
+
+  const navigateToFavorites = () => {
+    navigate("/favorites");
   };
 
   return (
@@ -128,10 +144,13 @@ const Main = () => {
               onKeyPress={searchMovie}
             ></input>
             <button>
-              <i className="fa-solid fa-magnifying-glass"></i>
+              <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>
         </form>
+        <a className="my-favorites" onClick={navigateToFavorites}>
+          Favorites
+        </a>
       </div>
       <div className="container">
         {movieData.length == 0 ? (
@@ -149,10 +168,10 @@ const Main = () => {
           })
         )}
       </div>
-      <div className="favorites-page">
+      {/* <div className="favorites-page">
         <h2 className="my-favorites">My Favorites </h2>
         <Favorites favorites={favorites} onDelete={handleDeleteFromFavorites} />
-      </div>
+        </div>*/}
     </>
   );
 };

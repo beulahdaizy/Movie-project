@@ -56,9 +56,6 @@ nav ul li a:focus {
 .search-btn {
   display: flex;
 }
-i {
-  color: white;
-}
 .inputText {
   outline: none;
   border: 1px solid var(--primary-color);
@@ -70,7 +67,7 @@ i {
   box-shadow: inset 0 5px 10px var(--secondary-color);
 }
 .inputText::placeholder {
-  color: white;
+  color: white !important;
 }
 .search-btn button {
   background-color: var(--secondary-color);
@@ -140,8 +137,8 @@ i {
 }
 .rating {
   background-color: var(--primary-color);
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -175,6 +172,7 @@ i {
   font-weight: bold;
 }
 .my-favorites {
+  cursor: pointer;
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
@@ -183,27 +181,73 @@ i {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 10px;
 }
-.favorite-item {
-  padding: 5px;
-  font-size: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  margin: 5px;
+
+.favorites-page-container {
+  padding: 20px;
 }
-.favorite {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+
+.favorites-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
-.no-favorite {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  margin-bottom: 5px;
+
+.favorite-card {
+  background-color: #752214;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.favorite-card-content {
+  padding: 16px;
+}
+
+.favorite-card-title {
+  margin: 0;
+  font-size: 18px;
+  color: white;
+}
+
+.favorite-card-description {
+  margin-top: 8px;
+  font-size: 14px;
+  color: white;
+}
+
+.remove-button {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  background-color: #ff7875;
+}
+
+.back-button {
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
 }

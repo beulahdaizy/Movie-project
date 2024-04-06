@@ -27,7 +27,7 @@ const Card = ({ info, onAddToFavorites, onRemoveFromFavorites }) => {
         <div className="movie-details">
           <div className="box">
             <h4 className="title">{info.title}</h4>
-            <p className="rating">{info.vote_average}</p>
+            <p className="rating">{info.vote_average.toFixed(1)}</p>
           </div>
 
           <div className="overview">
